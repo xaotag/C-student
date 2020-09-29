@@ -23,7 +23,7 @@ namespace WebApplication4
             //查询
             string con = ConfigurationManager.ConnectionStrings["xaotag"].ConnectionString;
             SqlConnection sct = new SqlConnection(con);
-            string sql = "SELECT   classId, studentName, studentNum, studentSex, mobile, password, birthday, province, city, district, isDelete from studentInfo;";
+            string sql = "SELECT   classId, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo;";
             SqlDataAdapter sqlData = new SqlDataAdapter(sql, sct);
             DataSet ds = new DataSet();
             sqlData.Fill(ds);
