@@ -24,10 +24,6 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click1" />
-            <asp:GridView ID="GridView1" runat="server">
-            </asp:GridView>
-
             <br />
             <div id="box">
 

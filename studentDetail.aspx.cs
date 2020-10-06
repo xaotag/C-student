@@ -16,37 +16,55 @@ namespace WebApplication4
         {
 
         }
-
-
-        protected void Button1_Click1(object sender, EventArgs e)
-        {
-            string sql = "SELECT  classId, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo;";
-            DataSet ds = OperaterBase.GetData(sql);
-            GridView1.DataSource = ds.Tables[0].DefaultView;
-            GridView1.DataBind();
-        }
-
         protected void Button2_Click(object sender, EventArgs e)
         {
-            string studentName = TextBox9.Text;
-            string studentNum = TextBox1.Text;
-            string studentSex = TextBox2.Text;
-            string Mobile = TextBox3.Text;
-            string pwd = TextBox4.Text;
-            string birthday = TextBox5.Text;
-            string province = TextBox6.Text;
-            string city = TextBox7.Text;
-            string district = TextBox8.Text;
-            string studentClassId = TextBox10.Text;
+            string studentName = TextBox9.Text.Trim();
+            string studentNum = TextBox1.Text.Trim();
+            string studentSex = TextBox2.Text.Trim();
+            string Mobile = TextBox3.Text.Trim();
+            string pwd = TextBox4.Text.Trim();
+            string birthday = TextBox5.Text.Trim();
+            string province = TextBox6.Text.Trim();
+            string city = TextBox7.Text.Trim();
+            string district = TextBox8.Text.Trim();
+            string studentClassId = TextBox10.Text.Trim();
 
-            string sql = @"INSERT INTO studentInfo (studentName,studentNum,studentSex,mobile,password,birthday,province,city,district,classId) VALUES (N'" + studentName + "',N'" + studentNum + "',N'" + studentSex + "',N'" + Mobile + "',N'"
+            string sql = @"INSERT INTO studentInfo (studentName,studentNum,studentSex,mobile,password,birthday,province,city,district,classId) VALUES  (N'" + studentName + "',N'" + studentNum + "',N'" + studentSex + "',N'" + Mobile + "',N'"
 + pwd + "','" + birthday + "',N'" + province + "',N'" + city + "',N'" + district + "', N'" + studentClassId + "')";
-
-            if (OperaterBase.commitBySql(sql) > 0)
+            //判断手机号是否唯一
+            if (IsMobile(studentNum, Mobile))
             {
-                Label11.Text = "插入成功";
-            }
 
+                if (OperaterBase.commitBySql(sql) > 0)
+                {
+                    Label11.Text = "插入成功";
+                    Response.Redirect("studentInfo.aspx");
+                }
+            }
+            else
+            {
+                Label11.Text = "插入失败 。。。。";
+
+            }
         }
+
+        /// <summary>
+        /// 判断手机号是否唯一
+        /// </summary>
+        /// <param name="mobile"></param>
+        /// <returns>true or false</returns>
+        private static Boolean IsMobile(string studentNum, string mobile)
+        {
+
+            string sql = "select mobile , studentNum from studentInfo where  studentNum = " + studentNum + " or  mobile = " + mobile;
+            DataSet ds = OperaterBase.GetData(sql);
+            if ( ds.Tables[0].Rows.Count < 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }
