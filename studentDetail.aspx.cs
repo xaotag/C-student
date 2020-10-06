@@ -53,12 +53,12 @@ namespace WebApplication4
         /// </summary>
         /// <param name="mobile"></param>
         /// <returns>true or false</returns>
-        private static Boolean IsMobile(string studentNum, string mobile)
+        private Boolean IsMobile(string studentNum, string mobile)
         {
 
-            string sql = "select mobile , studentNum from studentInfo where  studentNum = " + studentNum + " or  mobile = " + mobile;
+            string sql = "select mobile , studentNum from studentInfo where  studentNum = '" + studentNum + "' or  mobile = '" +mobile+"'";
             DataSet ds = OperaterBase.GetData(sql);
-            if ( ds.Tables[0].Rows.Count < 0)
+            if (ds.Tables[0].Rows.Count <= 0)
             {
                 return true;
             }
