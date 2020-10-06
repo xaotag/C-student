@@ -10,9 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br />
-            <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+            <asp:Label ID="Label1" runat="server" Text="学号"></asp:Label><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
+            <asp:Label ID="Label2" runat="server" Text="密码"></asp:Label><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br />
+            <asp:Button ID="Button1" runat="server" Text="登录" OnClick="Button1_Click" />
         </div>
     </form>
 </body>
