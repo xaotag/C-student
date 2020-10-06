@@ -19,7 +19,7 @@ namespace WebApplication4
                 int ID = Convert.ToInt32(Request["ID"]);
                 if (ID > 0)
                 {
-                    Button2.Text = "updata";
+                    Button2.CommandName = "updata";
                     fillData(ID);
                 }
             }
@@ -42,7 +42,7 @@ namespace WebApplication4
             string district = TextBox8.Text.Trim();
             string classId = TextBox10.Text.Trim();
 
-            if (Button2.Text == "insert")
+            if (Button2.CommandName == "insert")
             {
                 string sql = @"INSERT INTO studentInfo (studentName,studentNum,studentSex,mobile,password,birthday,province,city,district,classId) VALUES  (N'" + studentName + "',N'" + studentNum + "',N'" + studentSex + "',N'" + Mobile + "',N'"
 + pwd + "','" + birthday + "',N'" + province + "',N'" + city + "',N'" + district + "', N'" + classId + "')";
@@ -62,7 +62,7 @@ namespace WebApplication4
 
                 }
             }
-            else if (Button2.Text == "updata")
+            else if (Button2.CommandName == "updata")
             {
                 // 更新数据
                 string upData = "update studentInfo set studentName = N'" + studentName + "', studentNum = N'" + studentNum + "' ,studentSex = N'" + studentSex + "', mobile = N'" + Mobile + "' , password = N'" + pwd + "', birthday = N'" + birthday + "',pro" +
