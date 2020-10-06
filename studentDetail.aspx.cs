@@ -14,7 +14,7 @@ namespace WebApplication4
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+          
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
@@ -27,10 +27,10 @@ namespace WebApplication4
             string province = TextBox6.Text.Trim();
             string city = TextBox7.Text.Trim();
             string district = TextBox8.Text.Trim();
-            string studentClassId = TextBox10.Text.Trim();
 
-            string sql = @"INSERT INTO studentInfo (studentName,studentNum,studentSex,mobile,password,birthday,province,city,district,classId) VALUES  (N'" + studentName + "',N'" + studentNum + "',N'" + studentSex + "',N'" + Mobile + "',N'"
-+ pwd + "','" + birthday + "',N'" + province + "',N'" + city + "',N'" + district + "', N'" + studentClassId + "')";
+
+            string sql = @"INSERT INTO studentInfo (studentName,studentNum,studentSex,mobile,password,birthday,province,city,district) VALUES  (N'" + studentName + "',N'" + studentNum + "',N'" + studentSex + "',N'" + Mobile + "',N'"
++ pwd + "','" + birthday + "',N'" + province + "',N'" + city + "',N'" + district + "')";
             //判断手机号是否唯一
             if (IsMobile(studentNum, Mobile))
             {
