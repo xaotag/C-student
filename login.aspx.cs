@@ -22,13 +22,16 @@ namespace WebApplication4
         {
             string user = TextBox1.Text.Trim();
             string pwd = TextBox2.Text.Trim();
-            string sql = "SELECT studentNum,password FROM studentInfo WHERE studentNum = "+user+" AND password = "+pwd;
-            if(OperaterBase.GetData(sql) != null)
+            string sql = "SELECT studentNum,password FROM studentInfo WHERE studentNum = " + user + " AND password = " + pwd;
+            if (OperaterBase.GetData(sql) != null)
             {
                 Button1.Text = "登录成功";
             }
-            
-            
+            else
+            {
+                Button1.Text = "登录失败";
+            }
+            Response.Redirect("studentInfo.aspx");
         }
     }
 }
