@@ -15,7 +15,11 @@ namespace WebApplication4
             string conn = ConfigurationManager.ConnectionStrings["xaotag"].ConnectionString;
             return new SqlConnection(conn);
         }
-
+        /// <summary>
+        ///    查询
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public static DataSet GetData(string sql)
         {
             SqlDataAdapter sda = new SqlDataAdapter(sql, getconn());
@@ -23,7 +27,11 @@ namespace WebApplication4
             sda.Fill(ds);
             return ds;
         }
-
+        /// <summary>
+        /// 曾删改
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public static int commitBySql(string sql)
         {
             SqlConnection sqlConnection = getconn();
