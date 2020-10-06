@@ -27,6 +27,11 @@ namespace WebApplication4
             getStudentList(globalSql);
         }
 
+        /// <summary>
+        /// 通过手机号码搜索
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void mobile_Click(object sender, EventArgs e)
         {
             string Mobile = TextBox1.Text.Trim();
@@ -42,22 +47,34 @@ namespace WebApplication4
             }
 
         }
-
+        /// <summary>
+        /// 接受 参数
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             int ID = Convert.ToInt32(((HiddenField)e.Item.FindControl("BystudentNum")).Value);
             if (e.CommandName == "edit")
             {
-                Response.Redirect("/stduentDetail.aspx?ID=" + ID + "");
+                Response.Redirect("/studentDetail.aspx?ID=" + ID + "");
+
             }
             else if (e.CommandName == "delete")
             {
-                string delSql = "UPDATE studentInfo set isDelete = 1 where ID = " + ID + ";";
-                if (OperaterBase.commitBySql(delSql) > 0)
-                {
-                    string DelSql =  "SELECT  ID, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo where isDelete = 0;";
-                    getStudentList(DelSql);
-                }               
+                isDelSql(ID);
+            }
+        }
+        /// <summary>
+        /// 逻辑删除
+        /// </summary>
+        private void isDelSql(int ID)
+        {
+            string delSql = "UPDATE studentInfo set isDelete = 1 where ID = " + ID + ";";
+            if (OperaterBase.commitBySql(delSql) > 0)
+            {
+                string DelSql = "SELECT  ID, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo where isDelete = 0;";
+                getStudentList(DelSql);
             }
         }
     }

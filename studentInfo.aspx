@@ -60,7 +60,7 @@
                         <td><%#Eval("city") %></td>
                         <td><%#Eval("district") %></td>
                         <td>
-                            <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit">更新</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" CommandName="edit">更新</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton2" runat="server" CommandName="delete">删除</asp:LinkButton>
                         </td>
                         <asp:HiddenField ID="BystudentNum" runat="server" Value='<%#Eval("ID") %>' />
