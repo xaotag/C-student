@@ -25,7 +25,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Repeater ID="Repeater1" runat="server">
+            <asp:Button ID="mobile" runat="server" Text="查询" OnClick="mobile_Click" />
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                 <HeaderTemplate>
                     <table>
 
