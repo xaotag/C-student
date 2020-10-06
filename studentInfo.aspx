@@ -14,9 +14,11 @@
         td {
             padding: 5px;
         }
-        tr,td{
-            text-align:center;
+
+        tr, td {
+            text-align: center;
         }
+
         table {
             border-collapse: collapse;
         }
@@ -32,7 +34,7 @@
                     <table>
 
                         <tr>
-                            <td>班级ID</td>
+                            <td>学生ID</td>
                             <td>学生姓名</td>
                             <td>学号</td>
                             <td>性别</td>
@@ -47,7 +49,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td><%#Eval("classId") %></td>
+                        <td><%#Eval("ID") %></td>
                         <td><%#Eval("studentName") %></td>
                         <td><%#Eval("studentNum") %></td>
                         <td><%#Eval("studentSex") %></td>
@@ -59,9 +61,10 @@
                         <td><%#Eval("district") %></td>
                         <td>
                             <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit">更新</asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Delete">删除</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton2" runat="server" CommandName="delete">删除</asp:LinkButton>
                         </td>
-                    </tr>
+                        <asp:HiddenField ID="BystudentNum" runat="server" Value='<%#Eval("ID") %>' />
+                    </tr>   
                 </ItemTemplate>
                 <FooterTemplate>
                     </table>

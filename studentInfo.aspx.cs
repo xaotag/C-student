@@ -10,8 +10,8 @@ namespace WebApplication4
 {
     public partial class studentInfo : System.Web.UI.Page
     {
-        string globalSql = "SELECT  classId, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo;";
-        /// <summary>
+        string globalSql = "SELECT  ID, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo where isDelete = 0;";
+        /// <summary> 
         /// 获取学生列表
         /// </summary>
         private void getStudentList(string sql)
@@ -41,6 +41,24 @@ namespace WebApplication4
                 getStudentList(sql);
             }
 
+        }
+
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            int ID = Convert.ToInt32(((HiddenField)e.Item.FindControl("BystudentNum")).Value);
+            if (e.CommandName == "edit")
+            {
+                Response.Redirect("/stduentDetail.aspx?ID=" + ID + "");
+            }
+            else if (e.CommandName == "delete")
+            {
+                string delSql = "UPDATE studentInfo set isDelete = 1 where ID = " + ID + ";";
+                if (OperaterBase.commitBySql(delSql) > 0)
+                {
+                    string DelSql =  "SELECT  ID, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo where isDelete = 0;";
+                    getStudentList(DelSql);
+                }               
+            }
         }
     }
 }
