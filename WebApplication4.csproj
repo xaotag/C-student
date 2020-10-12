@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Reset.aspx" />
     <Content Include="studentInfo.aspx" />
     <Content Include="Web.config" />
     <Content Include="studentDetail.aspx" />
@@ -75,6 +76,13 @@
   <ItemGroup>
     <Compile Include="OperaterBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reset.aspx.cs">
+      <DependentUpon>Reset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reset.aspx.designer.cs">
+      <DependentUpon>Reset.aspx</DependentUpon>
+    </Compile>
     <Compile Include="studentDetail.aspx.cs">
       <DependentUpon>studentDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -96,6 +104,7 @@
     <Compile Include="studentInfo.aspx.designer.cs">
       <DependentUpon>studentInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="studentModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

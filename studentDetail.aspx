@@ -12,7 +12,7 @@
             display:inline-block;
         }
         input[type="text" i] {
-         float:right;
+             float:right;
         }
         #box span{
             display:inline-block;

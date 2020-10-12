@@ -35,6 +35,7 @@ namespace WebApplication4
         /// <returns></returns>
         private studentModel fillStudentModelData()
         {
+            
             studentModel stu = new studentModel();
             stu.StudentName = TextBox9.Text.Trim();
             stu.StudentNum = TextBox1.Text.Trim();
@@ -54,7 +55,7 @@ namespace WebApplication4
         private void addUser()
         {
             studentModel stu = fillStudentModelData();
-
+            if(stu==null)return;
             if (Button2.CommandName == "insert")
             {
                 //判断学号或手机号是否唯一 

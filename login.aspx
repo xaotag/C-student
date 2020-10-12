@@ -13,6 +13,7 @@
             <asp:Label ID="Label1" runat="server" Text="学号"></asp:Label><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
             <asp:Label ID="Label2" runat="server" Text="密码"></asp:Label><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br />
             <asp:Button ID="Button1" runat="server" Text="登录" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="找回密码" OnClick="Button2_Click" />
         </div>
     </form>
 </body>
