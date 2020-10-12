@@ -29,31 +29,45 @@ namespace WebApplication4
             addUser();
         }
 
+        /// <summary>
+        /// 将 studentDetail 输入框的值 封装为 stduentModel 返回
+        /// </summary>
+        /// <returns></returns>
+        private studentModel fillStudentModelData()
+        {
+            studentModel stu = new studentModel();
+            stu.StudentName = TextBox9.Text.Trim();
+            stu.StudentNum = TextBox1.Text.Trim();
+            stu.StudentSex = TextBox2.Text.Trim();
+            stu.Mobile = TextBox3.Text.Trim();
+            stu.Pwd = TextBox4.Text.Trim();
+            stu.Birthday = TextBox5.Text.Trim();
+            stu.Province = TextBox6.Text.Trim();
+            stu.City = TextBox7.Text.Trim();
+            stu.District = TextBox8.Text.Trim();
+            stu.ClassId = TextBox10.Text.Trim();
+            return stu;
+        }
+        /// <summary>
+        /// 添加一个学生信息
+        /// </summary>
         private void addUser()
         {
-            string studentName = TextBox9.Text.Trim();
-            string studentNum = TextBox1.Text.Trim();
-            string studentSex = TextBox2.Text.Trim();
-            string Mobile = TextBox3.Text.Trim();
-            string pwd = TextBox4.Text.Trim();
-            string birthday = TextBox5.Text.Trim();
-            string province = TextBox6.Text.Trim();
-            string city = TextBox7.Text.Trim();
-            string district = TextBox8.Text.Trim();
-            string classId = TextBox10.Text.Trim();
+            studentModel stu = fillStudentModelData();
 
             if (Button2.CommandName == "insert")
             {
-                string sql = @"INSERT INTO studentInfo (studentName,studentNum,studentSex,mobile,password,birthday,province,city,district,classId) VALUES  (N'" + studentName + "',N'" + studentNum + "',N'" + studentSex + "',N'" + Mobile + "',N'"
-+ pwd + "','" + birthday + "',N'" + province + "',N'" + city + "',N'" + district + "', N'" + classId + "')";
-                //判断手机号是否唯一
-                if (IsMobile(studentNum, Mobile))
+                //判断学号或手机号是否唯一 
+                if (IsMobile(stu.StudentNum, stu.Mobile))
                 {
-
+                    //如果学号或手机号码 不是唯一的 进行 insert 语句拼接 并执行
+                    string sql = @"INSERT INTO studentInfo (studentName,studentNum,studentSex,mobile,password,birthday,province,city,district,classId) VALUES  (N'" + stu.StudentName + "',N'" + stu.StudentNum + "',N'" + stu.StudentSex + "',N'" + stu.Mobile + "',N'"
+                                 + stu.Pwd + "','" + stu.Birthday + "',N'" + stu.Province + "',N'" + stu.City + "',N'" + stu.District + "', N'" + stu.ClassId + "')";
                     if (OperaterBase.commitBySql(sql) > 0)
                     {
                         Label11.Text = "插入成功";
-                        Response.Redirect("studentInfo.aspx");
+                        // 跳转
+                        Response.Redirect("/studentInfo.aspx");
                     }
                 }
                 else
@@ -65,15 +79,15 @@ namespace WebApplication4
             else if (Button2.CommandName == "updata")
             {
                 // 更新数据
-                string upData = "update studentInfo set studentName = N'" + studentName + "', studentNum = N'" + studentNum + "' ,studentSex = N'" + studentSex + "', mobile = N'" + Mobile + "' , password = N'" + pwd + "', birthday = N'" + birthday + "',pro" +
-                    "vince = N' "+province+"', city = N'" + city + "',district = N'" + district + " ', classId = 'N" + classId + "'";
+                string upData = "update studentInfo set studentName = N'" + stu.StudentName + "', studentNum = N'" + stu.StudentNum + "' ,studentSex = N'" + stu.StudentSex + "', mobile = N'" + stu.Mobile + "' , password = N'" + stu.Pwd + "', birthday = N'" + stu.Birthday + "',pro" +
+                    "vince = N' " + stu.Province + "', city = N'" + stu.City + "',district = N'" + stu.District + " ', classId = 'N" + stu.ClassId + "'";
                 if (OperaterBase.commitBySql(upData) > 0)
                 {
                     Label11.Text = "修改成功";
                 }
             }
 
-        }
+        }   
         /// <summary>
         /// 判断手机号是否唯一
         /// </summary>
@@ -81,7 +95,6 @@ namespace WebApplication4
         /// <returns>true or false</returns>
         private Boolean IsMobile(string studentNum, string mobile)
         {
-
             string sql = "select mobile , studentNum from studentInfo where  studentNum = '" + studentNum + "' or  mobile = '" + mobile + "'";
             DataSet ds = OperaterBase.GetData(sql);
             if (ds.Tables[0].Rows.Count <= 0)
@@ -90,7 +103,7 @@ namespace WebApplication4
             }
             return false;
         }
-
+  
         /// <summary>
         /// 把数据 填入框里面
         /// </summary>
@@ -110,7 +123,5 @@ namespace WebApplication4
             TextBox10.Text = ds.Tables[0].Rows[0]["classId"].ToString();
             TextBox9.Text = ds.Tables[0].Rows[0]["studentName"].ToString();
         }
-
-
     }
 }
