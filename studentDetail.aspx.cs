@@ -14,26 +14,28 @@ namespace WebApplication4
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GetClassList();
             if (!IsPostBack)
             {
                 int ID = Convert.ToInt32(Request["ID"]);
                 if (ID > 0)
                 {
+                    
                     Button2.CommandName = "updata";
-                    fillData(ID);
+                    FillData(ID);
                 }
             }
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
-            addUser();
+            AddUser();
         }
 
         /// <summary>
         /// 将 studentDetail 输入框的值 封装为 stduentModel 返回
         /// </summary>
         /// <returns></returns>
-        private studentModel fillStudentModelData()
+        private studentModel FillStudentModelData()
         {
             
             studentModel stu = new studentModel();
@@ -52,9 +54,9 @@ namespace WebApplication4
         /// <summary>
         /// 添加一个学生信息
         /// </summary>
-        private void addUser()
+        private void AddUser()
         {
-            studentModel stu = fillStudentModelData();
+            studentModel stu = FillStudentModelData();
             if(stu==null)return;
             if (Button2.CommandName == "insert")
             {
@@ -64,7 +66,7 @@ namespace WebApplication4
                     //如果学号或手机号码 不是唯一的 进行 insert 语句拼接 并执行
                     string sql = @"INSERT INTO studentInfo (studentName,studentNum,studentSex,mobile,password,birthday,province,city,district,classId) VALUES  (N'" + stu.StudentName + "',N'" + stu.StudentNum + "',N'" + stu.StudentSex + "',N'" + stu.Mobile + "',N'"
                                  + stu.Pwd + "','" + stu.Birthday + "',N'" + stu.Province + "',N'" + stu.City + "',N'" + stu.District + "', N'" + stu.ClassId + "')";
-                    if (OperaterBase.commitBySql(sql) > 0)
+                    if (OperaterBase.CommitBySql(sql) > 0)
                     {
                         Label11.Text = "插入成功";
                         // 跳转
@@ -82,7 +84,7 @@ namespace WebApplication4
                 // 更新数据
                 string upData = "update studentInfo set studentName = N'" + stu.StudentName + "', studentNum = N'" + stu.StudentNum + "' ,studentSex = N'" + stu.StudentSex + "', mobile = N'" + stu.Mobile + "' , password = N'" + stu.Pwd + "', birthday = N'" + stu.Birthday + "',pro" +
                     "vince = N' " + stu.Province + "', city = N'" + stu.City + "',district = N'" + stu.District + " ', classId = 'N" + stu.ClassId + "'";
-                if (OperaterBase.commitBySql(upData) > 0)
+                if (OperaterBase.CommitBySql(upData) > 0)
                 {
                     Label11.Text = "修改成功";
                 }
@@ -109,7 +111,7 @@ namespace WebApplication4
         /// 把数据 填入框里面
         /// </summary>
         /// <param name="StudentID"></param>
-        private void fillData(int StudentID)
+        private void FillData(int StudentID) 
         {
             string Bysql = "select * from studentInfo where ID = " + StudentID;
             DataSet ds = OperaterBase.GetData(Bysql);
@@ -123,6 +125,16 @@ namespace WebApplication4
             TextBox8.Text = ds.Tables[0].Rows[0]["district"].ToString();
             TextBox10.Text = ds.Tables[0].Rows[0]["classId"].ToString();
             TextBox9.Text = ds.Tables[0].Rows[0]["studentName"].ToString();
+        }
+
+        private void GetClassList()
+        {
+            string sql = "select * from ClassInfo";
+            DataSet ds = OperaterBase.GetData(sql);
+            DropDownList1.DataSource = ds;
+            DropDownList1.DataValueField = "ID";
+            DropDownList1.DataTextField = "className";
+            DropDownList1.DataBind();
         }
     }
 }

@@ -18,6 +18,13 @@
             display:inline-block;
             padding:3px 0 ;
         }
+        #DropDownList1 {
+            float: right;
+            
+            position: absolute;
+            margin-left: 238px;
+            margin-top: 3px;
+        }
        
     </style>
 </head>
@@ -37,7 +44,7 @@
                 <asp:Label ID="Label7" runat="server" Text="城市"></asp:Label><asp:TextBox ID="TextBox7" runat="server"></asp:TextBox><br />
                 <asp:Label ID="Label8" runat="server" Text="详细信息"></asp:Label><asp:TextBox ID="TextBox8" runat="server"></asp:TextBox><br />
 
-                <asp:Label ID="Label10" runat="server" Text="班级编号"></asp:Label><asp:TextBox ID="TextBox10" runat="server"></asp:TextBox><br />
+                <asp:Label ID="Label10" runat="server" Text="班级编号"></asp:Label><asp:TextBox ID="TextBox10" runat="server"></asp:TextBox><asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList><br />
 
                 <asp:Button ID="Button2" runat="server" Text="插入" OnClick="Button2_Click" CommandName="insert" /><asp:Label ID="Label11" runat="server"></asp:Label>
                 
