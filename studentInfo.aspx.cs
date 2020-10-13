@@ -34,7 +34,7 @@ namespace WebApplication4
         protected void mobile_Click(object sender, EventArgs e)
         {
             string Mobile = TextBox1.Text.Trim();
-            if (Mobile == "")
+            if (String.IsNullOrEmpty(Mobile))
             {
                 getStudentList(globalSql);
             }
@@ -70,7 +70,7 @@ namespace WebApplication4
         private void isDelSql(int ID)
         {
             string delSql = "UPDATE studentInfo set isDelete = 1 where ID = " + ID + ";";
-            if (OperaterBase.commitBySql(delSql) > 0)
+            if (OperaterBase.CommitBySql(delSql) > 0)
             {
                 string DelSql = "SELECT  ID, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo where isDelete = 0;";
                 getStudentList(DelSql);
