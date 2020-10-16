@@ -10,7 +10,7 @@ namespace WebApplication4
 {
     public partial class studentInfo : System.Web.UI.Page
     {
-        string globalSql = "SELECT  ID, studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo where isDelete = 0;";
+        string globalSql = "SELECT  ID, photoPath,studentName, studentNum, studentSex, mobile, password,birthday, province, city, district, isDelete from studentInfo where isDelete = 0;";
         /// <summary> 
         /// 获取学生列表
         /// </summary>

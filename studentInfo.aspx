@@ -22,6 +22,10 @@
         table {
             border-collapse: collapse;
         }
+        img {
+            width: 50px;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
@@ -36,6 +40,7 @@
                         <tr>
                             <td>学生ID</td>
                             <td>学生姓名</td>
+                            <td>图像</td>
                             <td>学号</td>
                             <td>性别</td>
                             <td>手机号</td>
@@ -51,6 +56,7 @@
                     <tr>
                         <td><%#Eval("ID") %></td>
                         <td><%#Eval("studentName") %></td>
+                        <td><img src='<%#Eval("photoPath") %>'></td>
                         <td><%#Eval("studentNum") %></td>
                         <td><%#Eval("studentSex") %></td>
                         <td><%#Eval("mobile") %></td>

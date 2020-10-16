@@ -12,19 +12,19 @@ namespace WebApplication4
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+        private int id;
         protected void Page_Load(object sender, EventArgs e)
         {
             GetClassList();
-            if (!IsPostBack)
+            
+            int ID = Convert.ToInt32(Request["ID"]);
+            if (ID > 0)
             {
-                int ID = Convert.ToInt32(Request["ID"]);
-                if (ID > 0)
-                {
-                    
-                    Button2.CommandName = "updata";
-                    FillData(ID);
-                }
+                Button2.CommandName = "updata";
+                id = ID;
+                FillData(ID);
             }
+
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
@@ -76,7 +76,6 @@ namespace WebApplication4
                 else
                 {
                     Label11.Text = "插入失败 。。。。";
-
                 }
             }
             else if (Button2.CommandName == "updata")
@@ -135,6 +134,25 @@ namespace WebApplication4
             DropDownList1.DataValueField = "ID";
             DropDownList1.DataTextField = "className";
             DropDownList1.DataBind();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            UpdataPhoto(id);
+        }
+        private void UpdataPhoto(int id)
+        {
+            PhotoUpload photo = new PhotoUpload();
+
+            if (FileUpload1.HasFile)
+            {
+                FileModel fileModel = photo.Upload(FileUpload1.FileName);
+                FileUpload1.SaveAs(fileModel.AbsoluteFileName);
+                if (photo.SavePhotoPath(fileModel.RelativeFileName, id))
+                {
+                    Image1.ImageUrl = fileModel.RelativeFileName;
+                }
+            }
         }
     }
 }

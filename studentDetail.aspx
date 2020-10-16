@@ -20,12 +20,11 @@
         }
         #DropDownList1 {
             float: right;
-            
             position: absolute;
             margin-left: 238px;
             margin-top: 3px;
         }
-       
+      
     </style>
 </head>
 <body>
@@ -33,7 +32,9 @@
         <div>
             <br />
             <div id="box">
-
+                <asp:Image ID="Image1" runat="server"   Height="121px" Width="132px"/>
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+                <asp:Button ID="Button1" runat="server" Text="更新头像" OnClick="Button1_Click" /><br/>
                 <asp:Label ID="Label9" runat="server" Text="学生姓名"></asp:Label><asp:TextBox ID="TextBox9" runat="server"></asp:TextBox><br />
                 <asp:Label ID="Label1" runat="server" Text="学号"></asp:Label><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
                 <asp:Label ID="Label2" runat="server" Text="性别"></asp:Label><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br />
